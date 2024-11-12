@@ -9,7 +9,15 @@ public class CLI {
 
         //int getInt = validateInput.intValidator("Enter a integer", "This is not an integer");
         //System.out.println(getInt);
-        Config configValues = new Config();
+
         //configValues.setTotalTicketCount();
+
+       Config configValues = new Config();
+       TicketManagement.setTicketPool(Config.getTotalTicketCount(),Config.getTotalTicketCount());
+       System.out.println(TicketManagement.getTicketPool().toString());
+
+       configValues.objectToJSON();
+
+
     }
 }
