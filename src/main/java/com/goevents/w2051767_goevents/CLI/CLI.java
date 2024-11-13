@@ -13,8 +13,8 @@ public class CLI {
         //configValues.setTotalTicketCount();
 
        Config configValues = new Config();
-       TicketManagement.setTicketPool(Config.getTotalTicketCount(),Config.getTotalTicketCount());
-       System.out.println(TicketManagement.getTicketPool().toString());
+       TicketPool.setTicketPool(Config.getTotalTicketCount(),Config.getTotalTicketCount());
+       System.out.println(TicketPool.getTicketPool().toString());
 
        configValues.objectToJSON();
 
