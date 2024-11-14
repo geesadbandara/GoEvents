@@ -4,7 +4,7 @@ public class Vendor extends User implements Runnable {
     public Vendor(String name, int vendorID){
         super(name,vendorID);
     }
-
+    @Override
     public synchronized void run(){
         Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),Config.getTicketReleaseRate()));
 

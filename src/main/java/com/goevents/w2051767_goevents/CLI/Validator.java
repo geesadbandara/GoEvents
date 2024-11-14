@@ -1,9 +1,13 @@
 package com.goevents.w2051767_goevents.CLI;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Validator {
+    protected static final Logger logger = LogManager.getLogger();
 
     public Validator(){
 
@@ -13,7 +17,8 @@ public class Validator {
 
         while (true) {
             try {
-                System.out.println(displayText);
+                //System.out.println(displayText);
+                logger.info(displayText);
                 Scanner intScan = new Scanner(System.in);
                 integerVal = intScan.nextInt();
                 break;

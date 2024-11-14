@@ -31,11 +31,11 @@ public class TicketPool {
         }
     }
     public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate){
-        int ticketCount = 0;
+        int ticketCount = 1;
+        System.out.println(maxPoolSize);
+        while(ticketCount<=ticketReleaseRate){
 
-        while(ticketCount+1<=ticketReleaseRate){
-
-            if(totalPoolSize+1<=maxPoolSize){
+            if(totalPoolSize<maxPoolSize){
                 TicketPool.ticketPool.add(1);
                 System.out.println(totalPoolSize);
                 System.out.println(TicketPool.getTicketPool().toString());
@@ -54,6 +54,17 @@ public class TicketPool {
         System.out.println(Config.getTotalTicketCount());
         return totalPoolSize;
     }
+    public static void removeTicket(int selectedNumber,int totalPoolSize){
 
+        if(selectedNumber<totalPoolSize && TicketPool.ticketPool.elementAt(selectedNumber)==1){
+            //TicketPool.ticketPool.add(selectedNumber,0);
+            System.out.println("Ticket Reserved : " +selectedNumber);
+            TicketPool.ticketPool.removeElementAt(selectedNumber);
+            TicketPool.ticketPool.insertElementAt(0,selectedNumber);
+        }
+        else{
+            System.out.println("Ticket "+ selectedNumber +" Not Available !");
+        }
+    }
 
 }
