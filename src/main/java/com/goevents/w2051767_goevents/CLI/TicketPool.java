@@ -1,5 +1,6 @@
 package com.goevents.w2051767_goevents.CLI;
 
+import javax.sound.midi.Soundbank;
 import java.util.Vector;
 
 public class TicketPool {
@@ -29,8 +30,28 @@ public class TicketPool {
             ticketID++;
         }
     }
-    public static void addTicket(){
+    public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate){
+        int ticketCount = 0;
 
+        while(ticketCount<=ticketReleaseRate){
+
+            if(totalPoolSize<maxPoolSize){
+                TicketPool.ticketPool.add(1);
+                System.out.println(totalPoolSize);
+                totalPoolSize++;
+                ticketCount++;
+            }
+            else{
+                System.out.println("Can't add more ticket, Ticket Pool is full");
+                break;
+            }
+
+            //or else we can assign the return value to the config class
+
+
+        }
+        System.out.println(Config.getTotalTicketCount());
+        return totalPoolSize;
     }
 
 

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Config {
     private static int totalTicketCount;
-    //need to be the sam evalue to others too
+    //need to be the same value to others too
     private static int maxTicketCount;
     private static int ticketReleaseRate;
     private static int customerRetrivalRate;
@@ -25,6 +25,11 @@ public class Config {
     public static int getTotalTicketCount() {
         return totalTicketCount;
     }
+
+  public static void setTotalTicketCount(int totalTicketCount){
+      Config.totalTicketCount = totalTicketCount;
+
+  }
 
     public static void setTotalTicketCount() {
         //Validator validateInput = new Validator();
@@ -48,6 +53,10 @@ public class Config {
         return maxTicketCount;
     }
 
+    public static void setMaxTicketCount(int maxTicketCount){
+        Config.maxTicketCount = maxTicketCount;
+    }
+
     public static void setMaxTicketCount() {
         while(true){
             maxTicketCount = Validator.intValidator("Enter Max Ticket Count","Total ticket count needs to be an integer");
@@ -69,6 +78,9 @@ public class Config {
     public static int getTicketReleaseRate() {
         return ticketReleaseRate;
     }
+    public static void setTicketReleaseRate(int ticketReleaseRate){
+        Config.ticketReleaseRate = ticketReleaseRate;
+    }
 
     public static void setTicketReleaseRate() {
         while(true){
@@ -86,6 +98,10 @@ public class Config {
 
     public static int getCustomerRetrivalRate() {
         return customerRetrivalRate;
+    }
+
+    public static void setCustomerRetrivalRate(int customerRetrivalRate){
+        Config.customerRetrivalRate = customerRetrivalRate;
     }
 
     public static void setCustomerRetrivalRate() {
