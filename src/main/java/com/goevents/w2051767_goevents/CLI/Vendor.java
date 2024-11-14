@@ -7,7 +7,7 @@ public class Vendor extends User implements Runnable {
 
     public synchronized void run(){
         Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),Config.getTicketReleaseRate()));
-        System.out.println(TicketPool.getTicketPool().toString());
+
 
         try{
             Thread.sleep(1000);

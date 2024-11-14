@@ -85,12 +85,12 @@ public class Config {
     public static void setTicketReleaseRate() {
         while(true){
             ticketReleaseRate = Validator.intValidator("Enter Ticket Release Rate per []","Total Ticket Release Rate needs to be an integer");
-            if(ticketReleaseRate>0 && ticketReleaseRate<(maxTicketCount-totalTicketCount)){
+            if(ticketReleaseRate>0 && ticketReleaseRate<=(maxTicketCount-totalTicketCount)){
                 //this.ticketReleaseRate = ticketReleaseRate;
                 break;
             }
             else{
-                System.out.println("Invalid Ticket Release Rate ! It should be higher than or equal the Total ticket count and a positive number");
+                System.out.println("Invalid Ticket Release Rate ! It should be less than or equal the Total ticket count and a positive number");
             }
         }
 

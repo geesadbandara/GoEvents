@@ -29,4 +29,18 @@ public class Validator {
 
 
     }
+    public boolean validateName(String name){
+        int lengthOfName = name.length();
+        if(name == ""){
+            return false;
+        }
+        for(int i = 0; i<lengthOfName; i++){
+            if(!Character.isLetter(name.charAt(i))){
+                return false;
+
+            }
+
+        }
+        return true;
+    }
 }

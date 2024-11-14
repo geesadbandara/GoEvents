@@ -23,12 +23,12 @@ public class CLI{
         Thread threadGeesad = new Thread(vendor1);
         threadGeesad.start();
 
-        Vendor vendor2 = new Vendor("Geesad2",2);
+        Vendor vendor2 = new Vendor("Geesad",2);
         Thread threadGeesad2 = new Thread(vendor1);
         threadGeesad2.start();
 
         System.out.println(TicketPool.getTicketPool().toString());
-       configValues.objectToJSON();
+        configValues.objectToJSON();
 
 
     }

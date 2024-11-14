@@ -33,11 +33,12 @@ public class TicketPool {
     public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate){
         int ticketCount = 0;
 
-        while(ticketCount<=ticketReleaseRate){
+        while(ticketCount+1<=ticketReleaseRate){
 
-            if(totalPoolSize<maxPoolSize){
+            if(totalPoolSize+1<=maxPoolSize){
                 TicketPool.ticketPool.add(1);
                 System.out.println(totalPoolSize);
+                System.out.println(TicketPool.getTicketPool().toString());
                 totalPoolSize++;
                 ticketCount++;
             }
