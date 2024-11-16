@@ -1,5 +1,7 @@
 package com.goevents.w2051767_goevents.CLI;
 
+import com.goevents.w2051767_goevents.MongoDB.Ticket;
+
 import javax.sound.midi.Soundbank;
 import java.util.Vector;
 
@@ -61,6 +63,7 @@ public class TicketPool {
             System.out.println("Ticket Reserved : " +selectedNumber);
             TicketPool.ticketPool.removeElementAt(selectedNumber);
             TicketPool.ticketPool.insertElementAt(0,selectedNumber);
+            //Ticket ticketToAdd = new Ticket();
         }
         else{
             System.out.println("Ticket "+ selectedNumber +" Not Available !");
