@@ -56,14 +56,16 @@ public class TicketPool {
         System.out.println(Config.getTotalTicketCount());
         return totalPoolSize;
     }
-    public static void removeTicket(int selectedNumber,int totalPoolSize){
+    public static void removeTicket(int selectedNumber,int totalPoolSize, String consumerName){
 
         if(selectedNumber<totalPoolSize && TicketPool.ticketPool.elementAt(selectedNumber)==1){
             //TicketPool.ticketPool.add(selectedNumber,0);
             System.out.println("Ticket Reserved : " +selectedNumber);
             TicketPool.ticketPool.removeElementAt(selectedNumber);
             TicketPool.ticketPool.insertElementAt(0,selectedNumber);
-            //Ticket ticketToAdd = new Ticket();
+            Ticket ticketToAdd = new Ticket(selectedNumber,consumerName);
+            Simulation.setSellTicketCount((Simulation.getSellTicketCount()+1));
+            ticketToAdd.addTicketDatabase();
         }
         else{
             System.out.println("Ticket "+ selectedNumber +" Not Available !");

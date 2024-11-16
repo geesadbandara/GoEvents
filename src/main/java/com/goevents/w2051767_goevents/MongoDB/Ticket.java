@@ -19,15 +19,15 @@ public class Ticket {
     @BsonProperty(value = "ticket_id")
     private int ticketID;
 
-    @BsonProperty(value = "vendor_name")
-    private String vendorName;
+//    @BsonProperty(value = "vendor_name")
+//    private String vendorName;
 
     @BsonProperty(value = "customer_name")
     private String customerName;
 
-    public Ticket( @BsonProperty(value = "ticket_id") int ticketID, @BsonProperty(value = "vendor_name") String vendorName, @BsonProperty(value = "customer_name") String customerName){
+    public Ticket( @BsonProperty(value = "ticket_id") int ticketID,@BsonProperty(value = "customer_name") String customerName){
         this.ticketID = ticketID;
-        this.vendorName = vendorName;
+        //this.vendorName = vendorName;
         this.customerName = customerName;
 
 
@@ -48,13 +48,13 @@ public class Ticket {
         this.ticketID = ticketID;
     }
 
-    public String getVendorName() {
-        return vendorName;
-    }
-
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
-    }
+//    public String getVendorName() {
+//        return vendorName;
+//    }
+//
+//    public void setVendorName(String vendorName) {
+//        this.vendorName = vendorName;
+//    }
 
     public String getCustomerName() {
         return customerName;
@@ -72,12 +72,12 @@ public class Ticket {
         try(MongoClient mongoClient = MongoClients.create(clientSettings)){
             MongoDatabase db = mongoClient.getDatabase("Vendor_Consumer_DB");
             MongoCollection<Ticket> ticket = db.getCollection("Ticket_Purchase_Details", Ticket.class);
-            Ticket newTicket = new Ticket(ticketID,vendorName,customerName);
+            //Ticket newTicket = new Ticket(ticketID,customerName);
 //            newTicket.setTicketID(ticketID);
 //            newTicket.setVendorName(vendorName);
 //            newTicket.setCustomerName(customerName);
-
-            ticket.insertOne(newTicket);
+//
+            ticket.insertOne(this);
 
 
         }
