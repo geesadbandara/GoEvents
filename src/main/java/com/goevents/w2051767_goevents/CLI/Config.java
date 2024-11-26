@@ -1,17 +1,21 @@
 package com.goevents.w2051767_goevents.CLI;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Config {
+public class Config{
     private static int totalTicketCount;
     //need to be the same value to others too
     private static int maxTicketCount;
     private static int ticketReleaseRate;
     private static int customerRetrivalRate;
+
+    protected static final Logger logger = LogManager.getLogger();
 
     //Validator validateInput = new Validator();
 
@@ -35,14 +39,14 @@ public class Config {
         //Validator validateInput = new Validator();
         //used static method here otherwise need to create multiple objects
         while(true){
-            totalTicketCount = Validator.intValidator("Enter Total Ticket Count","Total ticket count needs to be an integer");
+            totalTicketCount = Validator.intValidator("\u001B[32mEnter Total Ticket Count : \u001B[0m","\u001B[31mTotal ticket count needs to be an integer\u001B[0m");
             if(totalTicketCount>0 && totalTicketCount<=Config.maxTicketCount){
 
                 //Config.totalTicketCount = totalTicketCount;
                 break;
             }
             else{
-                System.out.println("Invalid Total Ticket Count ! It should be less than or equal the Total ticket count and a positive number");
+                System.out.println("\u001B[31mInvalid Total Ticket Count ! It should be less than or equal the Total ticket count and a positive number\u001B[0m");
             }
         }
 
@@ -59,7 +63,7 @@ public class Config {
 
     public static void setMaxTicketCount() {
         while(true){
-            maxTicketCount = Validator.intValidator("Enter Max Ticket Count","Total ticket count needs to be an integer");
+            maxTicketCount = Validator.intValidator("\u001B[32mEnter Max Ticket Count : \u001B[0m","\u001B[31mTotal ticket count needs to be an integer\u001B[0m");
 
             if(maxTicketCount>0 && maxTicketCount>=totalTicketCount){
 
@@ -68,7 +72,7 @@ public class Config {
 
             }
             else{
-                System.out.println("Invalid Max Ticket Count ! It should be higher than or equal the Total ticket count and a positive number");
+                System.out.println("\u001B[31mInvalid Max Ticket Count ! It should be higher than or equal the Total ticket count and a positive number\u001B[0m");
 
             }
         }
@@ -84,13 +88,13 @@ public class Config {
 
     public static void setTicketReleaseRate() {
         while(true){
-            ticketReleaseRate = Validator.intValidator("Enter Ticket Release Rate per []","Total Ticket Release Rate needs to be an integer");
-            if(ticketReleaseRate>0 && ticketReleaseRate<=(maxTicketCount-totalTicketCount)){
+            ticketReleaseRate = Validator.intValidator("\u001B[32mEnter Ticket Release Rate per 1 second : \u001B[0m","\u001B[31mTotal Ticket Release Rate needs to be an integer\u001B[0m");
+            if(ticketReleaseRate>0 && ticketReleaseRate<=maxTicketCount){
                 //this.ticketReleaseRate = ticketReleaseRate;
                 break;
             }
             else{
-                System.out.println("Invalid Ticket Release Rate ! It should be less than or equal the Total ticket count and a positive number");
+                System.out.println("\u001B[31mInvalid Ticket Release Rate ! It should be less than or equal the Total ticket count and a positive number\u001B[0m");
             }
         }
 
@@ -107,18 +111,21 @@ public class Config {
     public static void setCustomerRetrivalRate() {
 
         while(true){
-            customerRetrivalRate = Validator.intValidator("Enter Customer Retrieve Rate per []","Total Ticket Release Rate needs to be an integer");
+            customerRetrivalRate = Validator.intValidator("\u001B[32mEnter Customer Retrieve Rate per 1 second : \u001B[0m","\u001B[31mTotal Ticket Release Rate needs to be an integer\u001B[0m");
 
             if(customerRetrivalRate>0 && customerRetrivalRate<totalTicketCount){
                 //this.customerRetrivalRate = customerRetrivalRate;
                 break;
             }
             else{
-                System.out.println("Invalid Customer Retrieve Rate ! It should be higher than or equal the Total ticket count and a positive number");
+                System.out.println("\u001B[31mInvalid Customer Retrieve Rate ! It should be higher than or equal the Total ticket count and a positive number\u001B[0m");
+//                logger.info("\u001B[31mInvalid Customer Retrieve Rate ! It should be higher than or equal the Total ticket count and a positive number\u001B[0m");
             }
         }
 
     }
+
+
     public void objectToJSON(){
         JSONObject configDetails = new JSONObject();
         configDetails.put("Maximum Ticket Count ",Config.getMaxTicketCount());

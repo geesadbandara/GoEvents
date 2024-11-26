@@ -15,10 +15,16 @@ public class Consumer extends User implements Runnable{
             Random randomNum = new Random();
             int randomTicket = randomNum.nextInt(Config.getTotalTicketCount());
             TicketPool.removeTicket(randomTicket,Config.getTotalTicketCount(),super.getName());
+
             loopCount++;
+
         }
-
-
+        try {
+            //System.out.println("Consumer Sleeping");
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
