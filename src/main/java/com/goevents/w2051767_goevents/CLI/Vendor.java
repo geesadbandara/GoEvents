@@ -6,15 +6,20 @@ public class Vendor extends User implements Runnable {
     }
     @Override
     public synchronized void run(){
-        Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),Config.getTicketReleaseRate()));
+//        Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),Config.getTicketReleaseRate()));
+        while(Simulation.getSellTicketCount()<Config.getMaxTicketCount()){
+            Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),Config.getTicketReleaseRate()));
 
 
-        try{
-            Thread.sleep(1000);
+            try{
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
-        catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
+
     }
 
 }

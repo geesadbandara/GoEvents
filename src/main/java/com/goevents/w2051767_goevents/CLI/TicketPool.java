@@ -72,10 +72,11 @@ public class TicketPool {
             TicketPool.ticketPool.insertElementAt(0,selectedNumber);
             Ticket ticketToAdd = new Ticket(selectedNumber,consumerName);
             Simulation.setSellTicketCount((Simulation.getSellTicketCount()+1));
+            System.out.println(Simulation.getSellTicketCount());
             ticketToAdd.addTicketDatabase();
         }
         else{
-            logger.info("Ticket "+ selectedNumber +" Not Available !");
+            logger.info("Ticket "+ selectedNumber +" is Not Available !");
             //System.out.println("Ticket "+ selectedNumber +" Not Available !");
         }
     }

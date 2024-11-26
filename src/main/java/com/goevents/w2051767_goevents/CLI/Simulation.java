@@ -1,6 +1,7 @@
 package com.goevents.w2051767_goevents.CLI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -58,21 +59,44 @@ public class Simulation {
 
         String systemTrigger = "";
 
-        while((Simulation.getSellTicketCount()<Config.getMaxTicketCount())){
-            Vendor vendor1 = new Vendor("Geesad",1);
+        Vendor vendor1 = new Vendor("Geesad",1);
             Thread threadGeesad = new Thread(vendor1);
-            threadGeesad.start();
+            //threadGeesad.start();
 
-            Consumer consumer1 = new Consumer("Puppy",1);
+        Vendor vendor2 = new Vendor("Geesad",2);
+            Thread threadGeesad2 = new Thread(vendor2);
+
+        ArrayList<Thread> vendorThreads = new ArrayList<Thread>();
+            vendorThreads.add(threadGeesad);
+            vendorThreads.add(threadGeesad2);
+
+        for(int i = 0; i <vendorThreads.size(); i++){
+                vendorThreads.get(i).start();
+
+            }
+
+            //threadGeesad2.start();
+//            ArrayList<Thread> consumerThreads = new ArrayList<>();
+//            consumerThreads.add(threadPuppy);
+
+        Consumer consumer1 = new Consumer("Puppy",1);
             Thread threadPuppy = new Thread(consumer1);
             //consumer1.sleep(1000);
-            threadPuppy.start();
+            //threadPuppy.start();
 
-            Vendor vendor2 = new Vendor("Geesad",2);
-            Thread threadGeesad2 = new Thread(vendor2);
-            threadGeesad2.start();
+        Consumer consumer2 = new Consumer("Puppy",2);
+            Thread threadPuppy2 = new Thread(consumer2);
 
-            Thread trigThread = new Thread(() -> {
+        ArrayList<Thread> consumerThreads = new ArrayList<>();
+           consumerThreads.add(threadPuppy);
+           consumerThreads.add(threadPuppy2);
+
+        for(int i = 0; i <consumerThreads.size(); i++){
+               consumerThreads.get(i).start();
+          }
+
+        Thread trigThread = new Thread(() -> {
+            while(Simulation.getSellTicketCount()<Config.getMaxTicketCount()){
                 try{
                     Scanner trigScan = new Scanner(System.in);
                     //System.out.println("Checking Now");
@@ -82,6 +106,7 @@ public class Simulation {
                             //threadGeesad.interrupt();
                             //threadGeesad2.interrupt();
                             //threadPuppy.interrupt();
+
                             System.exit(0);
                             //String trigValue = trigScan.nextLine();
 
@@ -98,6 +123,7 @@ public class Simulation {
 //                            }
                             TimeUnit.MILLISECONDS.sleep(500);
                         }
+                    Thread.sleep(1000);
 
 
                 }
@@ -105,36 +131,114 @@ public class Simulation {
                     e.printStackTrace();
                 }
             }
+    }
 
             );
             //trigThread.setPriority(10);
             trigThread.start();
 
 
-
-            try {
-                threadGeesad.join();
-                threadGeesad2.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-
-
-
-            Consumer consumer2 = new Consumer("Puppy",2);
-            Thread threadPuppy2 = new Thread(consumer2);
-            threadPuppy2.start();
-
-            //used join to make extra safe of accesing the pool at sam etime
-            try {
-                threadPuppy.join();
-                threadPuppy2.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
+//        while((Simulation.getSellTicketCount()<Config.getMaxTicketCount())){
+//            Vendor vendor1 = new Vendor("Geesad",1);
+//            Thread threadGeesad = new Thread(vendor1);
+//            //threadGeesad.start();
+//
+//            Consumer consumer1 = new Consumer("Puppy",1);
+//            Thread threadPuppy = new Thread(consumer1);
+//            //consumer1.sleep(1000);
+//            //threadPuppy.start();
+//
+//            Vendor vendor2 = new Vendor("Geesad",2);
+//            Thread threadGeesad2 = new Thread(vendor2);
+//            //threadGeesad2.start();
+//            ArrayList<Thread> consumerThreads = new ArrayList<>();
+//            consumerThreads.add(threadPuppy);
+//
+//
+//            ArrayList<Thread> vendorThreads = new ArrayList<Thread>();
+//            vendorThreads.add(threadGeesad);
+//            vendorThreads.add(threadGeesad2);
+//            for(int i = 0; i <vendorThreads.size(); i++){
+//                vendorThreads.get(i).start();
+//
+//            }
+//
+//            Thread trigThread = new Thread(() -> {
+//                try{
+//                    Scanner trigScan = new Scanner(System.in);
+//                    //System.out.println("Checking Now");
+//
+//                        if(System.in.available()>0){
+//                            System.out.println("System is quitting.......");
+//                            //threadGeesad.interrupt();
+//                            //threadGeesad2.interrupt();
+//                            //threadPuppy.interrupt();
+//                            System.exit(0);
+//                            //String trigValue = trigScan.nextLine();
+//
+////                            if(trigValue.equalsIgnoreCase("x")){
+////                                System.exit(0);
+////                                threadGeesad.interrupt();
+////                                threadGeesad2.interrupt();
+////                                threadPuppy.interrupt();
+////                            }
+////                            switch(trigValue){
+////                                case "x":{
+////                                    System.exit(0);
+////                                }
+////                            }
+//                            TimeUnit.MILLISECONDS.sleep(500);
+//                        }
+//
+//
+//                }
+//                catch(IOException | InterruptedException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            );
+//            //trigThread.setPriority(10);
+//            trigThread.start();
+//
+//
+//
+//            try {
+//                for(Thread threadJoin : vendorThreads){
+//                    threadJoin.join();
+//                }
+////                threadGeesad.join();
+////                threadGeesad2.join();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//
+//
+//
+//            Consumer consumer2 = new Consumer("Puppy",2);
+//            Thread threadPuppy2 = new Thread(consumer2);
+//            //threadPuppy2.start();
+//
+//            consumerThreads.add(threadPuppy2);
+//
+//            for(int i = 0; i <consumerThreads.size(); i++){
+//                consumerThreads.get(i).start();
+//
+//            }
+//
+//            //used join to make extra safe of accesing the pool at sam etime
+//            try {
+//                for(Thread threadJoin : consumerThreads){
+//                    threadJoin.join();
+//                }
+////                threadPuppy.join();
+////                threadPuppy2.join();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//        }
 
 
 
