@@ -23,7 +23,10 @@ public class Menu implements Runnable {
                 //System.out.println("Checking Now");
 
                 if(System.in.available()>0){
-                    System.out.println("Opening the menu.......");
+                    //Thread.sleep(1000);
+
+                    System.out.println("System is quiting......");
+                    System.exit(0);
 //                    try{
 ////                        for(int i = 0; i <consumerThreads.size(); i++){
 ////                            consumerThreads.get(i).wait();
@@ -42,35 +45,39 @@ public class Menu implements Runnable {
 //                    catch (Exception e){
 //                        e.printStackTrace();
 //                    }
-                    int menueInput = trigScan.nextInt();
-                    switch (menueInput){
-                        case 1: //quit the simulation
-                        {System.exit(0);}
-                        case 2: //add a vendor
-                            //we have to get the vendor id to increment
-                        //can make it to get name
-                        {Vendor newVendor = new Vendor("HelloVendor", 3);
-                            Thread incVendor = new Thread(newVendor);
-                            vendorThreads.add(incVendor);
-                            incVendor.start();
-
-
-                            break;
-
-                        }
-                        case 3 :
-                            if(!vendorThreads.isEmpty()){
-                                vendorThreads.getFirst().interrupt();
-                                vendorThreads.removeFirst();
-                            }
-
-                    }
+//                    int menueInput = trigScan.nextInt();
+//                    switch (menueInput){
+//                        case 1: //quit the simulation
+//                        {
+//                            System.out.println("System is quiting...");
+//                            //wait(1000);
+//                            System.exit(0);
+//                        }
+//                        case 2: //add a vendor
+//                            //we have to get the vendor id to increment
+//                        //can make it to get name
+//                        {Vendor newVendor = new Vendor("HelloVendor", 3);
+//                            Thread incVendor = new Thread(newVendor);
+//                            vendorThreads.add(incVendor);
+//                            incVendor.start();
+//
+//
+//                            break;
+//
+//                        }
+//                        case 3 :
+//                            if(!vendorThreads.isEmpty()){
+//                                vendorThreads.getFirst().interrupt();
+//                                vendorThreads.removeFirst();
+//                            }
+//
+//                    }
 
 
 
                     TimeUnit.MILLISECONDS.sleep(500);
                 }
-                Thread.sleep(1000);
+                //Thread.sleep(1000);
 
 
             }
