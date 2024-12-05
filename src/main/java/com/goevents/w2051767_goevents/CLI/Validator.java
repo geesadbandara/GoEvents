@@ -17,8 +17,8 @@ public class Validator {
 
         while (true) {
             try {
-                //System.out.println(displayText);
-                logger.info(displayText);
+                System.out.print(displayText);
+                //logger.info(displayText);
                 Scanner intScan = new Scanner(System.in);
                 integerVal = intScan.nextInt();
                 break;

@@ -1,8 +1,12 @@
 package com.goevents.w2051767_goevents.CLI;
 
 import com.goevents.w2051767_goevents.MongoDB.Ticket;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sound.midi.Soundbank;
+import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.Vector;
 
 public class TicketPool {
@@ -10,6 +14,7 @@ public class TicketPool {
     private int totalPoolSize;
     private static int incPoolSize;
     private static Vector<Integer> ticketPool;
+    protected static final Logger logger = LogManager.getLogger();
 
     public TicketPool(){
 //        TicketManagement.totalPoolSize = totalPoolSize;
@@ -32,44 +37,56 @@ public class TicketPool {
             ticketID++;
         }
     }
-    public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate){
-        int ticketCount = 1;
-        System.out.println(maxPoolSize);
-        while(ticketCount<=ticketReleaseRate){
-
-            if(totalPoolSize<maxPoolSize){
-                TicketPool.ticketPool.add(1);
-                System.out.println(totalPoolSize);
-                System.out.println(TicketPool.getTicketPool().toString());
-                totalPoolSize++;
-                ticketCount++;
-            }
-            else{
-                System.out.println("Can't add more ticket, Ticket Pool is full");
-                break;
-            }
-
-            //or else we can assign the return value to the config class
+    public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate, String vendorName){
+        int loopCount = 0;
+        while(loopCount<ticketReleaseRate){
+            //System.out.println("Ticket Added");
+            TicketPool.ticketPool.add(1);
+            //System.out.println("Ticket Added by " +vendorName);
+            logger.info("Ticket Added by " +vendorName);
+            loopCount++;
+            totalPoolSize++;
 
 
         }
-        System.out.println(Config.getTotalTicketCount());
+
         return totalPoolSize;
     }
-    public static void removeTicket(int selectedNumber,int totalPoolSize, String consumerName){
+    public static int removeTicket(int totalPoolSize, String consumerName, int ticketRetrivalRate) {
+        int loopCount = 0;
+        while(loopCount<ticketRetrivalRate){
+            try{
+            TicketPool.ticketPool.removeFirst();
+            }
+            catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("No such ticket available");
+                break;
+            }
+            catch(NoSuchElementException k){
+                System.out.println("No such ticket available");
+                break;
+            }
+            //System.out.println("Ticket Purchased");
+            //System.out.println("Ticket Purchased by "+ consumerName);
+            logger.info("Ticket Purchased by "+ consumerName);
+            loopCount++;
+            totalPoolSize--;
 
-        if(selectedNumber<totalPoolSize && TicketPool.ticketPool.elementAt(selectedNumber)==1){
-            //TicketPool.ticketPool.add(selectedNumber,0);
-            System.out.println("Ticket Reserved : " +selectedNumber);
-            TicketPool.ticketPool.removeElementAt(selectedNumber);
-            TicketPool.ticketPool.insertElementAt(0,selectedNumber);
-            Ticket ticketToAdd = new Ticket(selectedNumber,consumerName);
-            Simulation.setSellTicketCount((Simulation.getSellTicketCount()+1));
-            ticketToAdd.addTicketDatabase();
+//            catch (ArrayIndexOutOfBoundsException e){
+//                System.out.println("No such ticket available");
+//                break;
+//            }
+
+
         }
-        else{
-            System.out.println("Ticket "+ selectedNumber +" Not Available !");
-        }
+        return totalPoolSize;
+
+
+    }
+    public void increseVendorCount(){
+        //add the vendor to the existing array for that take , the array as well as the created vendor as the input
+        //in vendorclass create a method call create a vendor and inside that call this one also ? so the
+        //vendor class method needs to take the array as the parameter.
     }
 
 }
