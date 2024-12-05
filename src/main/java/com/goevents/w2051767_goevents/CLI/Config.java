@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Config{
-    private static int totalTicketCount;
+    protected static int totalTicketCount;
     //need to be the same value to others too
     private static int maxTicketCount;
     private static int ticketReleaseRate;

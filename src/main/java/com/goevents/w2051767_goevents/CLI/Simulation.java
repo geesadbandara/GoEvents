@@ -55,9 +55,9 @@ public class Simulation {
 //       Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),5));
 //        Config.setTotalTicketCount(TicketPool.addTicket(Config.getTotalTicketCount(),Config.getMaxTicketCount(),5));
 
-        Scanner scanTrig = new Scanner(System.in);
+        //Scanner scanTrig = new Scanner(System.in);
 
-        String systemTrigger = "";
+        //String systemTrigger = "";
 
         Vendor vendor1 = new Vendor("Geesad",1);
             Thread threadGeesad = new Thread(vendor1);
@@ -94,48 +94,64 @@ public class Simulation {
         for(int i = 0; i <consumerThreads.size(); i++){
                consumerThreads.get(i).start();
           }
+        Menu menu =new Menu(consumerThreads,vendorThreads);
+        Thread menuThread = new Thread(menu);
+        menuThread.start();
 
-        Thread trigThread = new Thread(() -> {
-            while(Simulation.getSellTicketCount()<Config.getMaxTicketCount()){
-                try{
-                    Scanner trigScan = new Scanner(System.in);
-                    //System.out.println("Checking Now");
-
-                        if(System.in.available()>0){
-                            System.out.println("System is quitting.......");
-                            //threadGeesad.interrupt();
-                            //threadGeesad2.interrupt();
-                            //threadPuppy.interrupt();
-
-                            System.exit(0);
-                            //String trigValue = trigScan.nextLine();
-
-//                            if(trigValue.equalsIgnoreCase("x")){
-//                                System.exit(0);
-//                                threadGeesad.interrupt();
-//                                threadGeesad2.interrupt();
-//                                threadPuppy.interrupt();
+//        Thread trigThread = new Thread(() -> {
+//            while(Simulation.getSellTicketCount()<Config.getMaxTicketCount()){
+//                try{
+//                    Scanner trigScan = new Scanner(System.in);
+//                    //System.out.println("Checking Now");
+//
+//                        if(System.in.available()>0){
+//                            System.out.println("Opening the menu.......");
+//                            try{
+//                                for(int i = 0; i <consumerThreads.size(); i++){
+//                                    consumerThreads.get(i).wait();
+//                                }
+//                                for(int i = 0; i <vendorThreads.size(); i++){
+//                                    vendorThreads.get(i).wait();
+//
+//                                }
+//
 //                            }
-//                            switch(trigValue){
-//                                case "x":{
-//                                    System.exit(0);
+//                            catch (Exception e){
+//                                e.printStackTrace();
+//                            }
+//                            int menueInput = trigScan.nextInt();
+//                            switch (menueInput){
+//                                case 1: //quit the simulation
+//                                {System.exit(0);}
+//                                case 2:
+//                                {Vendor newVendor = new Vendor("HelloVendor", 3);
+//                                    //ArrayList<Thread> newVendorArrayList = new ArrayList<>();
+//                               newVendor.addVendor(newVendor,vendorThreads);
+//                                    System.out.println(newVendor);
+//                                    notifyAll();
+//                                break;
+//
+//
 //                                }
 //                            }
-                            TimeUnit.MILLISECONDS.sleep(500);
-                        }
-                    Thread.sleep(1000);
-
-
-                }
-                catch(IOException | InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-    }
-
-            );
+//
+//
+//
+//                            TimeUnit.MILLISECONDS.sleep(500);
+//                        }
+//                    Thread.sleep(1000);
+//
+//
+//                }
+//                catch(IOException | InterruptedException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//    }
+//
+//            );
             //trigThread.setPriority(10);
-            trigThread.start();
+            //trigThread.start();
 
 
 //        while((Simulation.getSellTicketCount()<Config.getMaxTicketCount())){

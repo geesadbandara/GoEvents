@@ -10,23 +10,23 @@ public class Consumer extends User implements Runnable{
 
     @Override
     public synchronized void run() {
-        while(Simulation.getSellTicketCount()<Config.getMaxTicketCount()){
-        int loopCount = 0;
-        while (loopCount < Config.getCustomerRetrivalRate()) {
-            Random randomNum = new Random();
-            int randomTicket = randomNum.nextInt(Config.getTotalTicketCount());
-            TicketPool.removeTicket(randomTicket, Config.getTotalTicketCount(), super.getName());
+        while(true) {
 
-            loopCount++;
+            Config.totalTicketCount = TicketPool.removeTicket(Config.getTotalTicketCount(), super.getName(), Config.getCustomerRetrivalRate());
 
+            try {
+                //System.out.println("Consumer Sleeping");
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                //throw new RuntimeException(e);
+                System.out.println("Thread Interrupted");
+                break;
+            }
+            catch (Exception k){
+                System.out.println("Thread Interrupted");
+            }
+            notifyAll();
         }
-        try {
-            //System.out.println("Consumer Sleeping");
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
     }
