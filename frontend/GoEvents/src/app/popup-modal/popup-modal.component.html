@@ -4,28 +4,28 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Input</mat-label>
-      <input matInput>
+      <input matInput type="number" [(ngModel)]="maxPool">
     </mat-form-field>
 
     <br>
 
     <mat-form-field appearance="outline">
       <mat-label>Input</mat-label>
-      <input matInput>
+      <input matInput type="number" [(ngModel)]="totalPool">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Input</mat-label>
-      <input matInput>
+      <input matInput [(ngModel)]="releaseRate">
     </mat-form-field>
 
 
     <mat-form-field appearance="outline">
       <mat-label>Input</mat-label>
-      <input matInput>
+      <input matInput [(ngModel)]="retrievalRate">
     </mat-form-field>
 
-    <button>Close</button>
+    <button (click)="activateSimulation()" >Submit</button>
 
 
   </div>
