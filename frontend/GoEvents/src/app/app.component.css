@@ -63,8 +63,8 @@ h1.title{
   color: #2196F3;
 }
 .main-panel{
-  align-items: center;
-  justify-content: center;
+  padding-right: 20Vw;
+  padding-left: 10Vw;
 }
 
 
