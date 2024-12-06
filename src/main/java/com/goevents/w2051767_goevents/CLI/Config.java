@@ -19,6 +19,8 @@ public class Config{
 
     //Validator validateInput = new Validator();
 
+    //for the Angulare part need to create a clean constructor then set each value there
+
     public Config(){
         setMaxTicketCount();
         setTotalTicketCount();;

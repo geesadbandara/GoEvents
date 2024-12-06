@@ -2,6 +2,8 @@ package com.goevents.w2051767_goevents;
 
 import com.goevents.w2051767_goevents.CLI.Simulation;
 import com.goevents.w2051767_goevents.Integration.Integration;
+import com.goevents.w2051767_goevents.backend.components.SystemConfigComponent;
+import com.goevents.w2051767_goevents.backend.services.SimulationSystemService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -25,6 +27,10 @@ public class W2051767GoEventsApplication {
                 Simulation newSim = new Simulation();
                 newSim.runSimulation();
                 //Integration newCLIInt = new Integration();
+            case 3 :
+                SystemConfigComponent newSystemConfig = new SystemConfigComponent(10,5,4,2);
+                SimulationSystemService newSimulationSystem = new SimulationSystemService();
+                newSimulationSystem.startSimulation();
         }
 
         //System.out.println("Hello world");
