@@ -147,5 +147,26 @@ public class Config{
         }
     }
 
+    //"/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/ConfigDetails.json"
+
+    public void objectToJSON(String path,String key,String value){
+
+        JSONObject configDetails = new JSONObject();
+
+        configDetails.put(key,value);
+
+        try{
+            FileWriter configDetailsFile = new FileWriter(path);
+            configDetailsFile.write(configDetails.toJSONString());
+            configDetailsFile.close();
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
 
 }

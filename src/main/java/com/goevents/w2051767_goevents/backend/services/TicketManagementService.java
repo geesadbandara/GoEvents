@@ -27,6 +27,7 @@ public class TicketManagementService extends SystemConfigComponent{
             TicketManagementService.ticketPool.add(1);
             System.out.println("Ticket Added");
             TicketComponent ticket = new TicketComponent(1,customerName);
+            ticket.objectToJSON("/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/Loggins.json","Consumer","Purchased a ticket");
             ticket.addTicketDatabase();
 
             loopCount++;
@@ -44,6 +45,8 @@ public class TicketManagementService extends SystemConfigComponent{
             try{
                 TicketManagementService.ticketPool.removeFirst();
                 System.out.println("Removed a ticket");
+                TicketComponent ticket = new TicketComponent();
+                ticket.objectToJSON("/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/Loggins.json","Vendor","Added a ticket");
             }
             catch (ArrayIndexOutOfBoundsException e){
                 System.out.println("No such ticket available");

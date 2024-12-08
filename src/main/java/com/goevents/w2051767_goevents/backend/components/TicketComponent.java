@@ -1,5 +1,6 @@
 package com.goevents.w2051767_goevents.backend.components;
 
+import com.goevents.w2051767_goevents.CLI.Config;
 import com.goevents.w2051767_goevents.MongoDB.Ticket;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -11,7 +12,11 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -31,6 +36,9 @@ public class TicketComponent {
         //this.vendorName = vendorName;
         this.customerName = customerName;
 
+
+    }
+    public TicketComponent(){
 
     }
     public ObjectId getId() {
@@ -57,6 +65,47 @@ public class TicketComponent {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
+    public void objectToJSON(){
+        JSONObject configDetails = new JSONObject();
+        configDetails.put("Maximum Ticket Count ", Config.getMaxTicketCount());
+        configDetails.put("Total Ticket Count ",Config.getTotalTicketCount());
+        configDetails.put("Customer Retrieval Rate ",Config.getCustomerRetrivalRate());
+        configDetails.put("Ticket Release Rate", Config.getTicketReleaseRate());
+
+        try{
+            FileWriter configDetailsFile = new FileWriter("/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/ConfigDetails.json");
+            configDetailsFile.write(configDetails.toJSONString());
+            configDetailsFile.close();
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+
+        }
+    }
+
+    //"/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/ConfigDetails.json"
+
+    public void objectToJSON(String path,String key,String value){
+
+        JSONObject configDetails = new JSONObject();
+
+        configDetails.put(key,value);
+
+        try{
+            FileWriter configDetailsFile = new FileWriter(path);
+            configDetailsFile.write(configDetails.toJSONString());
+            configDetailsFile.close();
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
     ConnectionString conString = new ConnectionString("mongodb://localhost:27017");
     CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
     CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
