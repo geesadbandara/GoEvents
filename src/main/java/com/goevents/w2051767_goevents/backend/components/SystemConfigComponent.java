@@ -17,6 +17,7 @@ public class SystemConfigComponent {
         SystemConfigComponent.totalTicketPool = totalTicketPool;
         SystemConfigComponent.ticketRetrievalRate = ticketRetrievalRate;
         SystemConfigComponent.ticketReleaseRate = ticketReleaseRate;
+
     }
 
     public static int getMaxTicketPoolSize() {

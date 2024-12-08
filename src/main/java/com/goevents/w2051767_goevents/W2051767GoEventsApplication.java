@@ -16,7 +16,9 @@ public class W2051767GoEventsApplication {
     public static void main(String[] args) {
         SpringApplication.run(W2051767GoEventsApplication.class, args);
         Scanner userPreferenceScan = new Scanner(System.in);
-        System.out.println("Enter 1 or 2");
+        System.out.println("1. Command Line Interface");
+        System.out.println("2. GoEvents Website");
+        System.out.println("Enter your preference : ");
         int userPref = userPreferenceScan.nextInt();
         switch (userPref) {
             case 1 :
@@ -27,10 +29,6 @@ public class W2051767GoEventsApplication {
                 Simulation newSim = new Simulation();
                 newSim.runSimulation();
                 //Integration newCLIInt = new Integration();
-            case 3 :
-                SystemConfigComponent newSystemConfig = new SystemConfigComponent(10,5,4,2);
-                SimulationSystemService newSimulationSystem = new SimulationSystemService();
-                newSimulationSystem.startSimulation();
         }
 
         //System.out.println("Hello world");

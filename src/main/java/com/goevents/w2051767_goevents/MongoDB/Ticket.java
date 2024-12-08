@@ -78,6 +78,7 @@ public class Ticket {
 //            newTicket.setCustomerName(customerName);
 //
             ticket.insertOne(this);
+            System.out.println("Added to DB");
 
 
         }

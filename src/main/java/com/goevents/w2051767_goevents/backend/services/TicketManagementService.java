@@ -21,11 +21,14 @@ public class TicketManagementService extends SystemConfigComponent{
         ticketPool = new Vector<>(SystemConfigComponent.totalTicketPool,incPoolSize);
     }
 
-    public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate, String vendorName){
+    public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate, String customerName){
         int loopCount = 0;
         while(loopCount<ticketReleaseRate){
             TicketManagementService.ticketPool.add(1);
             System.out.println("Ticket Added");
+            TicketComponent ticket = new TicketComponent(1,customerName);
+            ticket.addTicketDatabase();
+
             loopCount++;
             totalPoolSize++;
 

@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class FormController {
+
+    private SimulationSystemService newSimulation = new SimulationSystemService();
+    private SystemConfigComponent systemConfigFront;
+
+
     @PostMapping("/simulation")
     public void activateSimulation(@RequestBody RequestBodyComponent configBody){
         int maxPoolSize = configBody.getMaxPool();
@@ -20,11 +25,22 @@ public class FormController {
 
         //System.out.println(maxPoolSize +" "+ totalPoolSize+" "+releaseRate+" "+retrievalRate);
         System.out.println(configBody.toString());
-        SystemConfigComponent systemConfigFront = new SystemConfigComponent(maxPoolSize,totalPoolSize,releaseRate,retrievalRate);
-        SimulationSystemService newSimulation = new SimulationSystemService();
-        newSimulation.startSimulation();
+        systemConfigFront = new SystemConfigComponent(maxPoolSize,totalPoolSize,releaseRate,retrievalRate);
+
+
+        newSimulation.objectToJSON();
+        newSimulation.startSimulation(systemConfigFront);
+
+
 
 
 
     }
+
+    @PostMapping("/simulationend")
+    public void deactivatedSimulation(){
+            newSimulation.stopSimulation();
+
+    }
+
 }

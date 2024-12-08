@@ -21,7 +21,7 @@
           <!--<button id="confirm-button" mat-stroked-button (click)="activateSimulation()">Confirm</button>-->
          <button id="start-button" mat-stroked-button (click)="showModal()">Start</button>
           &nbsp;
-          <button id="stop-button" mat-stroked-button>Stop</button>
+          <button id="stop-button" mat-stroked-button (click)="deactivateSimulation()">Stop</button>
 
         </div>
         <app-popup-modal id="popup-modal"></app-popup-modal>
