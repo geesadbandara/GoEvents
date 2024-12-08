@@ -25,6 +25,15 @@ export class PopupModalComponent {
 
   constructor(private http: HttpClient) {
   }
+
+  hideModal(){
+    const element = document.getElementById('popup-modal');
+    if(element){
+      element.style.display='none';
+    }
+
+  }
+
   activateSimulation(){
     const url = 'http://localhost:8080/api/simulation';
     const data={
@@ -37,7 +46,9 @@ export class PopupModalComponent {
 
     this.http.post(url,data).subscribe(
       () =>{
+        console.log(data);
         console.log("Successful");
+        this.hideModal();
       },
       error => {
         console.error("Error Occurred", error);
@@ -46,9 +57,17 @@ export class PopupModalComponent {
   }
 
   validateInputs(){
-    if(this.validateMaxSize() && this.validateTotalTicket() && this.validateRelease() && this.validateRetrieval()){
+    //console.log(this.validateMaxSize())
+
+    //console.log(((+this.totalPool)>(+this.maxPool)))
+    //console.log(typeof +this.totalPool);
+    console.log(this.validateTotalTicket())
+    console.log(this.validateRelease())
+    console.log(this.validateRetrieval())
+    if(this.validateMaxSize() && this.validateTotalTicket() && this.validateRelease() && this.validateRetrieval()) {
       this.activateSimulation();
     }
+
   }
 
   errorMessageMax: String ='';
@@ -57,55 +76,57 @@ export class PopupModalComponent {
   errorMessageRetrieval: String ='';
 
 
-  // @ts-ignore
+
   validateMaxSize(){
-    if(isNaN(this.maxPool) || (this.maxPool)==0){
-      this.errorMessageMax = 'Not valid an integer';
+    if(isNaN(this.maxPool) || (+this.maxPool)<=0){
+      this.errorMessageMax = 'Not a valid integer';
+      return false;
     }
     else{
       this.errorMessageMax='';
+      //console.log(this.maxPool);
       return true;
       //this.startSimulation();
     }
   }
-  // @ts-ignore
+
   validateTotalTicket(){
-    if(isNaN(this.totalPool) || (this.totalPool)==0){
-      this.errorMessageTotal = 'Not valid an integer';
+    if(isNaN(this.totalPool) || (+this.totalPool)<=0 ){
+      this.errorMessageTotal = 'Not a valid integer';
+      return false;
     }
-    if((this.totalPool>this.maxPool)){
-      this.errorMessageTotal = 'Total ticket count need to be less than Max ticket count';
+    else if( (+this.totalPool) > (+this.maxPool)){
+      console.log("Total");
+      console.log((this.totalPool) > (this.maxPool));
+      this.errorMessageTotal = 'Need to be less than max pool';
+      return false;
+
     }
-    if((this.totalPool>this.maxPool) && (isNaN(this.totalPool) || (this.totalPool)==0)){
-      this.errorMessageTotal='';
-      return true;
-      //this.startSimulation();
-    }
+    this.errorMessageTotal = "";
+    return true;
   }
-  // @ts-ignore
+
   validateRelease(){
-    if(isNaN(this.releaseRate) || (this.releaseRate)==0){
-      this.errorMessageRelease = 'Not valid an integer';
+    if(isNaN(this.releaseRate) || (this.releaseRate)<=0 ){
+      this.errorMessageRelease = 'Not a valid integer';
+      return false;
     }
-    if(this.releaseRate>this.totalPool){
-      this.errorMessageRelease = 'Release Rate need to be less than max ticket count';
-    }
-    if((this.releaseRate>this.totalPool) && (isNaN(this.releaseRate) || (this.releaseRate)==0)){
-      return true;
-    }
+    this.errorMessageRelease = "";
+    return true;
 
   }
-  // @ts-ignore
+
   validateRetrieval(){
-    if(isNaN(this.retrievalRate) || (this.retrievalRate)==0){
-      this.errorMessageRetrieval = 'Not valid an integer';
+    if(isNaN(this.retrievalRate) || (+this.retrievalRate)<=0 ){
+      this.errorMessageRetrieval = 'Not a valid Integer';
+      return false;
     }
-    if(this.retrievalRate>this.releaseRate){
-      this.errorMessageRetrieval = 'Retrieval rate need to be less than Release Rate ';
+    else if((+this.retrievalRate)>(+this.maxPool)){
+      this.errorMessageRetrieval = 'Need to be less than max count';
+      return false;
     }
-    if((isNaN(this.retrievalRate) || (this.retrievalRate)==0) && (this.retrievalRate>this.releaseRate)){
-      return true;
-    }
+    this.errorMessageRetrieval = "";
+    return true;
   }
 
 }

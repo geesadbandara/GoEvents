@@ -66,6 +66,35 @@ h1.title{
   padding-right: 20Vw;
   padding-left: 10Vw;
 }
+#popup-modal{
+  display: none;
+  transition: all 0.5s ease-in;
+  z-index: 1000;
+}
+#start-button{
+  width: 15vw;
+  z-index: 0;
+  border-radius: 25px;
+  color: #2196F3;
+}
+#start-button:hover{
+  background-color: #2196F3;
+  color: white;
+  transition: background-color 0.5s ease-in,
+  color 0.5s ease-in;
+}
+#stop-button{
+  width: 15vw;
+  z-index: 0;
+  border-radius: 25px;
+  color: #bc0f0f;
+}
+#stop-button:hover{
+  background-color:#bc0f0f;
+  color: white;
+  transition: background-color 0.5s ease-in,
+  color 0.5s ease-in;
+}
 
 
 @media screen and (max-width: 650px) {

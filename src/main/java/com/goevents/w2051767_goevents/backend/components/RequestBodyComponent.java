@@ -1,29 +1,55 @@
 package com.goevents.w2051767_goevents.backend.components;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class RequestBodyComponent {
-    private int maxTicketPool;
-    private int totalTicketPool;
+    private int maxPool;
+    private int totalPool;
     private int releaseRate;
     private int retrievalRate;
 
-   public RequestBodyComponent(){
-
-   }
-
-    public int getMaxTicketPool() {
-        return maxTicketPool;
+    @Autowired
+    public RequestBodyComponent(@Value("0") int maxPool,@Value("0") int totalPool,@Value("0") int releaseRate,@Value("0") int retrievalRate) {
+        this.maxPool = maxPool;
+        this.totalPool = totalPool;
+        this.releaseRate = releaseRate;
+        this.retrievalRate = retrievalRate;
     }
 
-    public void setMaxTicketPool(int maxTicketPool) {
-        this.maxTicketPool = maxTicketPool;
+//    public int getMaxTicketPool() {
+//        return maxTicketPool;
+//    }
+//
+//    public void setMaxTicketPool(int maxTicketPool) {
+//        this.maxTicketPool = maxTicketPool;
+//    }
+//
+//    public int getTotalTicketPool() {
+//        return totalTicketPool;
+//    }
+//
+//    public void setTotalTicketPool(int totalTicketPool) {
+//        this.totalTicketPool = totalTicketPool;
+//    }
+
+
+    public int getMaxPool() {
+        return maxPool;
     }
 
-    public int getTotalTicketPool() {
-        return totalTicketPool;
+    public void setMaxPool(int maxPool) {
+        this.maxPool = maxPool;
     }
 
-    public void setTotalTicketPool(int totalTicketPool) {
-        this.totalTicketPool = totalTicketPool;
+    public int getTotalPool() {
+        return totalPool;
+    }
+
+    public void setTotalPool(int totalPool) {
+        this.totalPool = totalPool;
     }
 
     public int getReleaseRate() {
@@ -40,5 +66,15 @@ public class RequestBodyComponent {
 
     public void setRetrievalRate(int retrievalRate) {
         this.retrievalRate = retrievalRate;
+    }
+
+    @Override
+    public String toString() {
+        return "RequestBodyComponent{" +
+                "maxPool=" + maxPool +
+                ", totalPool=" + totalPool +
+                ", releaseRate=" + releaseRate +
+                ", retrievalRate=" + retrievalRate +
+                '}';
     }
 }

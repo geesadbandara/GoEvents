@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class FormController {
     @PostMapping("/simulation")
     public void activateSimulation(@RequestBody RequestBodyComponent configBody){
-        int maxPoolSize = configBody.getMaxTicketPool();
-        int totalPoolSize = configBody.getTotalTicketPool();
+        int maxPoolSize = configBody.getMaxPool();
+        int totalPoolSize = configBody.getTotalPool();
         int releaseRate = configBody.getReleaseRate();
         int retrievalRate = configBody.getRetrievalRate();
 
-        System.out.println(maxPoolSize +""+ totalPoolSize+" "+releaseRate+" "+retrievalRate);
+        //System.out.println(maxPoolSize +" "+ totalPoolSize+" "+releaseRate+" "+retrievalRate);
+        System.out.println(configBody.toString());
 
 
 

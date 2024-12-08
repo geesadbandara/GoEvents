@@ -1,4 +1,4 @@
-<div class="modal-container">
+<div class="modal-container" id="modal-container-pop">
   <div class="modal-content">
     <div id="heading-box">
     <h2> Configure the system</h2>
@@ -7,39 +7,39 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Maximum Ticket Count</mat-label>
-        <input matInput type="number" [(ngModel)]="maxPool">
+        <input matInput type="numbers" [(ngModel)]="maxPool">
       </mat-form-field>
       <!--<div *ngIf="errorMessage" class="error-msgs">Can't be null or 0</div>-->
-      <div *ngIf="errorMessageMax" class="error-messages">Can't be null or 0</div>
+      <div *ngIf="errorMessageMax" class="error-messages">{{errorMessageMax}}</div>
     </div>
     <br>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Total Ticket Count</mat-label>
-        <input matInput type="number" [(ngModel)]="totalPool">
+        <input matInput type="numbers" [(ngModel)]="totalPool">
       </mat-form-field>
-      <div *ngIf="errorMessageTotal" class="error-messages">Can't be null or 0</div>
+      <div *ngIf="errorMessageTotal" class="error-messages">{{errorMessageTotal}}</div>
     </div>
     <br>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Ticket Release Rate</mat-label>
-        <input matInput [(ngModel)]="releaseRate">
+        <input matInput type="numbers" [(ngModel)]="releaseRate">
       </mat-form-field>
-      <div *ngIf="errorMessageRelease" class="error-messages">Can't be null or 0</div>
+      <div *ngIf="errorMessageRelease" class="error-messages">{{errorMessageRelease}}</div>
     </div>
     <br>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Ticket Retrieval Rate</mat-label>
-        <input matInput [(ngModel)]="retrievalRate">
+        <input matInput type="numbers" [(ngModel)]="retrievalRate">
       </mat-form-field>
-      <div *ngIf="errorMessageRetrieval" class="error-messages">Can't be null or 0</div>
+      <div *ngIf="errorMessageRetrieval" class="error-messages">{{errorMessageRetrieval}}</div>
     </div>
     <div class="example-button-row">
       <!--<button id="confirm-button" mat-stroked-button (click)="activateSimulation()">Confirm</button>-->
       <button id="confirm-button" mat-stroked-button (click)="validateInputs()">Confirm</button>
-      <button id="close-button" mat-stroked-button disabled>Close</button>
+      <button id="close-button" mat-stroked-button (click)="hideModal()">Close</button>
     </div>
 
 
