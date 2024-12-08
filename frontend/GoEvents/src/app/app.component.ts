@@ -5,11 +5,12 @@ import {PopupModalComponent} from './popup-modal/popup-modal.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButton} from "@angular/material/button";
+import {TicketCountComponent} from './ticket-count/ticket-count.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-    imports: [RouterOutlet, SideMenueBarComponent, PopupModalComponent, MatButton],
+  imports: [RouterOutlet, SideMenueBarComponent, PopupModalComponent, MatButton, TicketCountComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
