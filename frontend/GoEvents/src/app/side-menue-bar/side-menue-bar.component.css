@@ -1,0 +1,25 @@
+.tab-collection{
+  width: inherit;
+  background: #2196F3;
+  height: inherit;
+}
+.tabs{
+  width: inherit;
+  height: 35px;
+  text-align: center;
+  padding-top: 5px;
+
+  background: #2196F3;
+  color: white;
+
+  font-weight: bold;
+
+}
+
+.tabs:hover{
+  background: aliceblue;
+  color: black;
+
+  transition: background-color 0.5s ease-in,
+              color 0.5s ease-in;
+}

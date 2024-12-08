@@ -2,6 +2,8 @@ package com.goevents.w2051767_goevents;
 
 import com.goevents.w2051767_goevents.CLI.Simulation;
 import com.goevents.w2051767_goevents.Integration.Integration;
+import com.goevents.w2051767_goevents.backend.components.SystemConfigComponent;
+import com.goevents.w2051767_goevents.backend.services.SimulationSystemService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -14,7 +16,9 @@ public class W2051767GoEventsApplication {
     public static void main(String[] args) {
         SpringApplication.run(W2051767GoEventsApplication.class, args);
         Scanner userPreferenceScan = new Scanner(System.in);
-        System.out.println("Enter 1 or 2");
+        System.out.println("1. Command Line Interface");
+        System.out.println("2. GoEvents Website");
+        System.out.println("Enter your preference : ");
         int userPref = userPreferenceScan.nextInt();
         switch (userPref) {
             case 1 :

@@ -41,7 +41,7 @@ public class Simulation {
         TicketPool.setTicketPool(Config.getTotalTicketCount(),Config.getMaxTicketCount());
 
         System.out.println("System Configured Successfully");
-        System.out.println(TicketPool.getTicketPool().toString());
+        //System.out.println(TicketPool.getTicketPool().toString());
 
 
 

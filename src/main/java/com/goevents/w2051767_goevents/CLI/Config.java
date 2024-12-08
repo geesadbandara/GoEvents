@@ -19,6 +19,8 @@ public class Config{
 
     //Validator validateInput = new Validator();
 
+    //for the Angulare part need to create a clean constructor then set each value there
+
     public Config(){
         setMaxTicketCount();
         setTotalTicketCount();;
@@ -143,6 +145,27 @@ public class Config{
             e.printStackTrace();
 
         }
+    }
+
+    //"/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/ConfigDetails.json"
+
+    public void objectToJSON(String path,String key,String value){
+
+        JSONObject configDetails = new JSONObject();
+
+        configDetails.put(key,value);
+
+        try{
+            FileWriter configDetailsFile = new FileWriter(path);
+            configDetailsFile.write(configDetails.toJSONString());
+            configDetailsFile.close();
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+
+        }
+
     }
 
 

@@ -1,0 +1,21 @@
+.ticket-count-container{
+  display:-ms-flexbox;
+  padding: 0;
+}
+.ticket-count-title{
+  font-size: 60px;
+  font-weight: bold;
+
+  text-shadow: 0px 2px 2px #38383b;
+
+  text-align: center;
+  align-content: center;
+  color: #2196F3;
+
+}
+#ticket-count{
+  font-size: 70px;
+  text-align: center;
+  font-weight: bolder;
+
+}
