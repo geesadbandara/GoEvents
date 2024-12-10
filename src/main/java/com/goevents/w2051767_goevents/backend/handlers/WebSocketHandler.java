@@ -2,6 +2,7 @@ package com.goevents.w2051767_goevents.backend.handlers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.websocket.server.model.Stock;
+import com.goevents.w2051767_goevents.backend.components.ResponseBodyComponent;
 import com.goevents.w2051767_goevents.backend.components.SystemConfigComponent;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -28,7 +29,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
             //Stock newStock = new Stock(randomValue);
 
-            TextMessage newMessage = new TextMessage(objectMapper.writeValueAsString(SystemConfigComponent.getTotalTicketPool()));
+            ResponseBodyComponent newResponseBody = new ResponseBodyComponent(SystemConfigComponent.getTotalTicketPool(),SystemConfigComponent.getSystemStatus());
+
+            TextMessage newMessage = new TextMessage(objectMapper.writeValueAsString(newResponseBody));
             sessionSocket.sendMessage(newMessage);
             Thread.sleep(1000);
 

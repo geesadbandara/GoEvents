@@ -7,13 +7,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButton} from "@angular/material/button";
 import {TicketCountComponent} from './ticket-count/ticket-count.component';
 import {HttpClient} from '@angular/common/http';
+import {FrontendCliComponent} from './frontend-cli/frontend-cli.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SideMenueBarComponent, PopupModalComponent, MatButton, TicketCountComponent],
+  imports: [RouterOutlet, SideMenueBarComponent, PopupModalComponent, MatButton, TicketCountComponent, FrontendCliComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'GoEvents';

@@ -15,6 +15,9 @@ public class SystemConfigComponent {
     protected static int totalTicketPool;
     protected static int ticketRetrievalRate;
     protected static int ticketReleaseRate;
+    protected static String systemStatus = "Waiting for the configuration";
+
+
 
     @Autowired
     public SystemConfigComponent(@Value("0") int maxTicketPoolSize,@Value("0") int totalTicketPool,@Value("0") int ticketRetrievalRate,@Value("0") int ticketReleaseRate) {
@@ -23,6 +26,14 @@ public class SystemConfigComponent {
         SystemConfigComponent.ticketRetrievalRate = ticketRetrievalRate;
         SystemConfigComponent.ticketReleaseRate = ticketReleaseRate;
 
+    }
+
+    public static String getSystemStatus() {
+        return systemStatus;
+    }
+
+    public static void setSystemStatus(String systemStatus) {
+        SystemConfigComponent.systemStatus = systemStatus;
     }
 
     public static int getMaxTicketPoolSize() {

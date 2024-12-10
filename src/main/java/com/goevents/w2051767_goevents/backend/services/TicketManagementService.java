@@ -26,6 +26,9 @@ public class TicketManagementService extends SystemConfigComponent{
         while(loopCount<ticketReleaseRate){
             TicketManagementService.ticketPool.add(1);
             System.out.println("Ticket Added");
+
+            SystemConfigComponent.setSystemStatus("Added Tickets to the System");
+
             TicketComponent ticket = new TicketComponent(1,customerName);
             ticket.objectToJSON("/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/Loggins.json","Consumer","Purchased a ticket");
             ticket.addTicketDatabase();
@@ -45,6 +48,7 @@ public class TicketManagementService extends SystemConfigComponent{
             try{
                 TicketManagementService.ticketPool.removeFirst();
                 System.out.println("Removed a ticket");
+                SystemConfigComponent.setSystemStatus("Purchased Ticket from the System");
                 TicketComponent ticket = new TicketComponent();
                 ticket.objectToJSON("/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/Loggins.json","Vendor","Added a ticket");
             }

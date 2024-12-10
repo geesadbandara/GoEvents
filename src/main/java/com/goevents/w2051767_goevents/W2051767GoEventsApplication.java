@@ -16,8 +16,8 @@ public class W2051767GoEventsApplication {
     public static void main(String[] args) {
         SpringApplication.run(W2051767GoEventsApplication.class, args);
         Scanner userPreferenceScan = new Scanner(System.in);
-        System.out.println("1. Command Line Interface");
-        System.out.println("2. GoEvents Website");
+        System.out.println("1. GoEvents Website");
+        System.out.println("2. GoEvents Command Line Interface");
         System.out.println("Enter your preference : ");
         int userPref = userPreferenceScan.nextInt();
         switch (userPref) {
