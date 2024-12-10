@@ -55,8 +55,10 @@ public class SimulationSystemService {
     }
 
     public void stopSimulation(){
+        SystemConfigComponent.setSystemStatus("Stopping the Process......");
       vendorThreads.forEach(Thread::interrupt);
       consumerThreads.forEach(Thread::interrupt);
+        SystemConfigComponent.setSystemStatus("System is waiting for a refresh..");
 
     }
 

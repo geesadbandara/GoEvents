@@ -15,6 +15,8 @@ import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -92,11 +94,15 @@ public class TicketComponent {
         JSONObject configDetails = new JSONObject();
 
         configDetails.put(key,value);
+        FileWriter configDetailsFile;
 
-        try{
-            FileWriter configDetailsFile = new FileWriter(path);
-            configDetailsFile.write(configDetails.toJSONString());
-            configDetailsFile.close();
+        try(BufferedWriter writerNew = new BufferedWriter(new FileWriter(path,true));){
+
+
+            //configDetailsFile.append(configDetails.toJSONString());
+            writerNew.write(configDetails.toJSONString());
+            writerNew.newLine();
+            //configDetailsFile.close();
 
         }
         catch(IOException e){
