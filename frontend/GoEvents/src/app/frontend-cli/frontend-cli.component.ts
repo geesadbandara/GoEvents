@@ -15,8 +15,10 @@ export class ResponseBodyComponent{
     NgForOf
   ],
   template:`
-   <h1>Shopping Cart</h1>
+    <div class="shell-box" style="background: black;color: white; width:60vw;height: 40vh; border-radius: 25px; padding: 10px">
+   <h1>Go Event Shell</h1>
   <div *ngFor="let line of logLines">{{line}}</div>
+    </div>
   `,
   //templateUrl: './frontend-cli.component.html',
   styleUrl: './frontend-cli.component.css',
@@ -50,7 +52,7 @@ export class FrontendCliComponent {
 
   }
   removeItem() {
-    this.logLines.splice(1, 1); // Remove the product at the given index
+    this.logLines.splice(0, ((this.logLines.length)-1)); // Remove the product at the given index
   }
   addItem(response:ResponseBodyComponent){
     this.logLines.push(response.displayLog)
