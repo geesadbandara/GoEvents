@@ -41,6 +41,7 @@ public class VendorService extends PersonComponent implements Runnable {
             SystemConfigComponent.setTotalTicketPool(TicketManagementService.addTicket(SystemConfigComponent.getTotalTicketPool(),SystemConfigComponent.getMaxTicketPoolSize(),SystemConfigComponent.getTicketReleaseRate(),super.getName()));
 
             try{
+
                 Thread.sleep(1000);
             }
             catch (InterruptedException e) {

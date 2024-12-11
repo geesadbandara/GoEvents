@@ -42,7 +42,6 @@ public class CustomerService extends PersonComponent implements Runnable {
             SystemConfigComponent.setTotalTicketPool(TicketManagementService.buyTicket(SystemConfigComponent.getTotalTicketPool(), super.getName(), SystemConfigComponent.getTicketRetrievalRate()));
 
             try {
-                //System.out.println("Consumer Sleeping");
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 //throw new RuntimeException(e);

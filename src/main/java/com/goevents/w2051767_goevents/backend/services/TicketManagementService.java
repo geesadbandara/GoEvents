@@ -23,7 +23,9 @@ public class TicketManagementService extends SystemConfigComponent{
 
     public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate, String customerName){
         int loopCount = 0;
+
         while(loopCount<ticketReleaseRate){
+            if(SystemConfigComponent.totalTicketPool<SystemConfigComponent.maxTicketPoolSize){}
             TicketManagementService.ticketPool.add(1);
             System.out.println("Ticket Added");
 
