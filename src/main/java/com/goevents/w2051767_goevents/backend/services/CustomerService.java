@@ -30,10 +30,6 @@ public class CustomerService extends PersonComponent implements Runnable {
                 System.out.println("Thread Interrupted");
                 break;
             }
-            catch (Exception k){
-                System.out.println("Thread Interrupted");
-            }
-            notifyAll();
         }
 
 

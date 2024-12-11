@@ -9,7 +9,7 @@ import java.util.Vector;
 
 public class TicketManagementService extends SystemConfigComponent{
 
-    private static Vector<Integer> ticketPool;
+    protected static Vector<Integer> ticketPool;
 
     public TicketManagementService(int maxTicketPoolSize, int totalTicketPool, int ticketRetrievalRate, int ticketReleaseRate) {
         super(maxTicketPoolSize, totalTicketPool, ticketRetrievalRate, ticketReleaseRate);
@@ -19,13 +19,22 @@ public class TicketManagementService extends SystemConfigComponent{
     public static void setTicketPool(){
         int incPoolSize = SystemConfigComponent.maxTicketPoolSize - SystemConfigComponent.totalTicketPool;
         ticketPool = new Vector<>(SystemConfigComponent.totalTicketPool,incPoolSize);
+
+        for(int i = 0; i<totalTicketPool;i++){
+            TicketManagementService.ticketPool.add(1);
+        }
     }
 
     public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate, String customerName){
         int loopCount = 0;
+        System.out.println(TicketManagementService.ticketPool.size());
+
 
         while(loopCount<ticketReleaseRate){
-            if(SystemConfigComponent.totalTicketPool<SystemConfigComponent.maxTicketPoolSize){}
+            //if(SystemConfigComponent.totalTicketPool<SystemConfigComponent.maxTicketPoolSize){}
+            if((SystemConfigComponent.getTotalTicketPool()+SystemConfigComponent.getTicketReleaseRate())>=SystemConfigComponent.getMaxTicketPoolSize()){
+                continue;
+            }
             TicketManagementService.ticketPool.add(1);
             System.out.println("Ticket Added");
 
@@ -55,11 +64,8 @@ public class TicketManagementService extends SystemConfigComponent{
                 ticket.objectToJSON("/Users/geesadbandara/Desktop/Java/OOP CWK/w2051767_GoEvents/Loggins.json","Vendor","Added a ticket");
             }
             catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("No such ticket available");
-                break;
-            }
-            catch(NoSuchElementException k){
-                System.out.println("No such ticket available");
+                //System.out.println("No such ticket available");
+                e.printStackTrace();
                 break;
             }
             loopCount++;

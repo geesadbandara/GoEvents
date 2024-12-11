@@ -95,7 +95,7 @@ export class PopupModalComponent {
       this.errorMessageTotal = 'Not a valid integer';
       return false;
     }
-    else if( (+this.totalPool) >= (+this.maxPool)){
+    else if( (+this.totalPool) > (+this.maxPool)){
       console.log("Total");
       console.log((this.totalPool) > (this.maxPool));
       this.errorMessageTotal = 'Need to be less than max pool';
@@ -111,6 +111,7 @@ export class PopupModalComponent {
       this.errorMessageRelease = 'Not a valid integer';
       return false;
     }
+
     this.errorMessageRelease = "";
     return true;
 
