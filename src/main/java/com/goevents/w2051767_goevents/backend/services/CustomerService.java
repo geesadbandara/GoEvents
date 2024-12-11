@@ -10,30 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService extends PersonComponent implements Runnable {
-    private String consumerName;
-    private int consumerId;
 
     //validations need to be done in frontend
 
     @Autowired
     public CustomerService(@Value("0") String name,@Value("0") int CustomerId) {
         super(name, CustomerId);
-    }
-
-    public String getConsumerName() {
-        return consumerName;
-    }
-
-    public void setConsumerName(String consumerName) {
-        this.consumerName = consumerName;
-    }
-
-    public int getConsumerId() {
-        return consumerId;
-    }
-
-    public void setConsumerId(int consumerId) {
-        this.consumerId = consumerId;
     }
 
     public synchronized void run(){
