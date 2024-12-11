@@ -107,8 +107,12 @@ export class PopupModalComponent {
   }
 
   validateRelease(){
-    if(isNaN(this.releaseRate) || (this.releaseRate)<=0 ){
+    if(isNaN(this.releaseRate) || (+this.releaseRate)<=0 ){
       this.errorMessageRelease = 'Not a valid integer';
+      return false;
+    }
+    else if((+this.releaseRate)>=(+this.maxPool)){
+      this.errorMessageRelease = 'Need to be less than the max pool size';
       return false;
     }
 
@@ -124,6 +128,10 @@ export class PopupModalComponent {
     }
     else if((+this.retrievalRate)>(+this.maxPool)){
       this.errorMessageRetrieval = 'Need to be less than max count';
+      return false;
+    }
+    else if((+this.retrievalRate)>=(+this.maxPool)){
+      this.errorMessageRetrieval = 'Need to be less than the max pool size';
       return false;
     }
     this.errorMessageRetrieval = "";
