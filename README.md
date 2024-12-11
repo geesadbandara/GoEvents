@@ -45,5 +45,17 @@ Run the springboot application and select the preference
 1. CLI
 2. Web Site
 
+## Diagrams
+### Class Diagram
 
-   
+![OOP drawio](https://github.com/user-attachments/assets/983477de-82cc-43de-b154-f1b9edf12e43)
+
+### Sequence Diagram
+
+
+![SequenceDiagram drawio](https://github.com/user-attachments/assets/49e67720-dc3d-4fe6-961f-af051f238b7c)
+
+
+## References 
+
+Web-Sockets Using Springboot and Angular: [https://medium.com/@parthiban.rajalingam/introduction-to-web-sockets-using-spring-boot-and-angular-b11e7363f051]()
