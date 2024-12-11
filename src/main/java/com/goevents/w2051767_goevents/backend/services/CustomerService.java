@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService extends PersonComponent implements Runnable {
-    private String consumerName;
-    private int consumerId;
 
     //validations need to be done in frontend
 
@@ -20,39 +18,18 @@ public class CustomerService extends PersonComponent implements Runnable {
         super(name, CustomerId);
     }
 
-    public String getConsumerName() {
-        return consumerName;
-    }
-
-    public void setConsumerName(String consumerName) {
-        this.consumerName = consumerName;
-    }
-
-    public int getConsumerId() {
-        return consumerId;
-    }
-
-    public void setConsumerId(int consumerId) {
-        this.consumerId = consumerId;
-    }
-
     public synchronized void run(){
         while(true) {
 
             SystemConfigComponent.setTotalTicketPool(TicketManagementService.buyTicket(SystemConfigComponent.getTotalTicketPool(), super.getName(), SystemConfigComponent.getTicketRetrievalRate()));
 
             try {
-                //System.out.println("Consumer Sleeping");
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 //throw new RuntimeException(e);
                 System.out.println("Thread Interrupted");
                 break;
             }
-            catch (Exception k){
-                System.out.println("Thread Interrupted");
-            }
-            notifyAll();
         }
 
 

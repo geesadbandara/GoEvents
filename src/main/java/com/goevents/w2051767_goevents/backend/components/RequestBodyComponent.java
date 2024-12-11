@@ -19,21 +19,6 @@ public class RequestBodyComponent {
         this.retrievalRate = retrievalRate;
     }
 
-//    public int getMaxTicketPool() {
-//        return maxTicketPool;
-//    }
-//
-//    public void setMaxTicketPool(int maxTicketPool) {
-//        this.maxTicketPool = maxTicketPool;
-//    }
-//
-//    public int getTotalTicketPool() {
-//        return totalTicketPool;
-//    }
-//
-//    public void setTotalTicketPool(int totalTicketPool) {
-//        this.totalTicketPool = totalTicketPool;
-//    }
 
 
     public int getMaxPool() {

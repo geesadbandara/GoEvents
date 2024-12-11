@@ -32,8 +32,8 @@ export class TicketCountComponent {
       console.log(this.totalTicket);
       if((+this.totalTicket)<0){
         this.totalTicket = 0;
-
       }
+
     };
   }
 

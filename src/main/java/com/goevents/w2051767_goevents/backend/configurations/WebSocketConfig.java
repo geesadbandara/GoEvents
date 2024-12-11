@@ -12,14 +12,14 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer{
     @Bean
-    public WebSocketHandler tradeWebSocketHandler(){
+    public WebSocketHandler sendWebSocketHandler(){
         return new WebSocketHandler() {
         };//calling the socketHandler
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(tradeWebSocketHandler(),"/totalTicket").setAllowedOrigins("*");
-        registry.addHandler(tradeWebSocketHandler(),"/getLog").setAllowedOrigins("*");
+        registry.addHandler(sendWebSocketHandler(),"/totalTicket").setAllowedOrigins("*");
+        registry.addHandler(sendWebSocketHandler(),"/getLog").setAllowedOrigins("*");
     }
 }

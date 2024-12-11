@@ -5,6 +5,7 @@ import com.goevents.w2051767_goevents.CLI.TicketPool;
 import com.goevents.w2051767_goevents.backend.components.SystemConfigComponent;
 import org.json.simple.JSONObject;
 
+import javax.sound.midi.Soundbank;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,20 +23,6 @@ public class SimulationSystemService {
         TicketManagementService.setTicketPool();
         System.out.println(newSystemConfig.getMaxTicketPoolSize());
 
-        VendorService vendor1 = new VendorService("Geesad", 1);
-        Thread threadGeesad = new Thread(vendor1);
-
-        VendorService vendor2 = new VendorService("Geesad", 2);
-        Thread threadGeesad2 = new Thread(vendor2);
-
-
-        vendorThreads.add(threadGeesad);
-        vendorThreads.add(threadGeesad2);
-
-        for (int i = 0; i < vendorThreads.size(); i++) {
-            System.out.println("Started vendor threads");
-            vendorThreads.get(i).start();
-        }
 
         CustomerService consumer1 = new CustomerService("Puppy", 1);
         Thread threadPuppy = new Thread(consumer1);
@@ -45,13 +32,42 @@ public class SimulationSystemService {
         Thread threadPuppy2 = new Thread(consumer2);
 
 
+        VendorService vendor1 = new VendorService("Geesad", 1);
+        Thread threadGeesad = new Thread(vendor1);
+
+        VendorService vendor2 = new VendorService("Geesad", 2);
+        Thread threadGeesad2 = new Thread(vendor2);
+
         consumerThreads.add(threadPuppy);
         consumerThreads.add(threadPuppy2);
 
+        vendorThreads.add(threadGeesad);
+        vendorThreads.add(threadGeesad2);
+
+
+//        if(!(SystemConfigComponent.getMaxTicketPoolSize()==SystemConfigComponent.getTotalTicketPool())){
         for (int i = 0; i < consumerThreads.size(); i++) {
             System.out.println("Started consumer threads");
             consumerThreads.get(i).start();
         }
+
+
+        for (int i = 0; i < vendorThreads.size(); i++) {
+            System.out.println("Started vendor threads");
+            vendorThreads.get(i).start();
+        }
+    //}
+
+//        for (int i = 0; i < consumerThreads.size(); i++) {
+//            System.out.println("Started consumer threads");
+//            consumerThreads.get(i).start();
+//        }
+
+
+        //SystemConfigComponent.setSystemStatus("Starting the simulation");
+
+
+
     }
 
     public void stopSimulation(){

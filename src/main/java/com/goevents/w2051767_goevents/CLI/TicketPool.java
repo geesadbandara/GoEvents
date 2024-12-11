@@ -39,7 +39,9 @@ public class TicketPool {
     }
     public static int addTicket(int totalPoolSize, int maxPoolSize, int ticketReleaseRate, String vendorName){
         int loopCount = 0;
-        while(loopCount<ticketReleaseRate){
+        System.out.println(TicketPool.ticketPool.size());
+        while(loopCount<ticketReleaseRate && TicketPool.ticketPool.size()<Config.getMaxTicketCount()){
+
             //System.out.println("Ticket Added");
             TicketPool.ticketPool.add(1);
             //System.out.println("Ticket Added by " +vendorName);

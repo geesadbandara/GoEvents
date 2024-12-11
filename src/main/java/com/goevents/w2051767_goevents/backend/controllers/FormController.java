@@ -25,7 +25,7 @@ public class FormController {
 
         //System.out.println(maxPoolSize +" "+ totalPoolSize+" "+releaseRate+" "+retrievalRate);
         System.out.println(configBody.toString());
-        systemConfigFront = new SystemConfigComponent(maxPoolSize,totalPoolSize,releaseRate,retrievalRate);
+        systemConfigFront = new SystemConfigComponent(maxPoolSize,totalPoolSize,retrievalRate,releaseRate);
 
 
         newSimulation.objectToJSON();

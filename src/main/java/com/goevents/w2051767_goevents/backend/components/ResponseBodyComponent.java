@@ -10,7 +10,8 @@ public class ResponseBodyComponent {
     String displayLog;
     @Autowired
     public ResponseBodyComponent(@Value("0") int totalTicketPool,@Value("Waiting..") String displayLog) {
-        this.totalPool = totalTicketPool;
+        //this.totalPool = totalTicketPool;
+        setTotalTicketPool(totalTicketPool);
         this.displayLog = displayLog;
     }
 
@@ -19,7 +20,13 @@ public class ResponseBodyComponent {
     }
 
     public void setTotalTicketPool(int totalTicketPool) {
-        this.totalPool = totalTicketPool;
+        if(SystemConfigComponent.totalTicketPool<SystemConfigComponent.maxTicketPoolSize){
+            this.totalPool = totalTicketPool;
+        }
+        else {
+            this.totalPool = SystemConfigComponent.maxTicketPoolSize;
+        }
+
     }
 
     public String getDisplayLog() {
